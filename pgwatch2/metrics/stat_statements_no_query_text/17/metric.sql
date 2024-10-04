@@ -1,4 +1,4 @@
-with q_data as (
+with /* pgwatch2_generated */ q_data as (
   select
     (extract(epoch from now()) * 1e9)::int8 as epoch_ns,
     '-' as tag_query,
