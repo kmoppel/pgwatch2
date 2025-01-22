@@ -5059,8 +5059,7 @@ func main() {
 		}
 		adHocMode = true
 	}
-	log.Error("adHocMode", adHocMode)
-	log.Error("AdHocConnString", opts.AdHocConnString)
+
 	if opts.TestdataDays != 0 || opts.TestdataMultiplier > 0 {
 		if len(opts.AdHocConnString) == 0 {
 			log.Fatal("Test mode requires --adhoc-conn-str!")
@@ -5304,7 +5303,6 @@ func main() {
 						monitored_dbs = resolved
 					}
 				}
-				log.Error("monitored_dbs", monitored_dbs)
 			} else {
 				mc, err := ReadMonitoringConfigFromFileOrFolder(opts.Config)
 				if err == nil {
