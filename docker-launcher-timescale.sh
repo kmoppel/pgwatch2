@@ -44,16 +44,16 @@ fi
 
 if [ ! -f /pgwatch2/persistent-config/db-bootstrap-done-marker ] ; then
 
-if [ ! -d /var/lib/postgresql/15 ]; then
-  mkdir /var/lib/postgresql/15 && chown -R postgres:postgres /var/lib/postgresql/15
-  pg_dropcluster 15 main
-  pg_createcluster --locale en_US.UTF-8 15 main
-  echo "include = 'pgwatch_postgresql.conf'" >> /etc/postgresql/15/main/postgresql.conf
-  cp /pgwatch2/postgresql_timescale.conf /etc/postgresql/15/main/pgwatch_postgresql.conf
-  cp /pgwatch2/pg_hba.conf /etc/postgresql/15/main/pg_hba.conf
+if [ ! -d /var/lib/postgresql/17 ]; then
+  mkdir /var/lib/postgresql/17 && chown -R postgres:postgres /var/lib/postgresql/17
+  pg_dropcluster 17 main
+  pg_createcluster --locale en_US.UTF-8 17 main
+  echo "include = 'pgwatch_postgresql.conf'" >> /etc/postgresql/17/main/postgresql.conf
+  cp /pgwatch2/postgresql_timescale.conf /etc/postgresql/17/main/pgwatch_postgresql.conf
+  cp /pgwatch2/pg_hba.conf /etc/postgresql/17/main/pg_hba.conf
 fi
 
-pg_ctlcluster 15 main start -- --wait
+pg_ctlcluster 17 main start -- --wait
 
 su -c "psql -d postgres -f /pgwatch2/bootstrap/change_pw.sql" postgres
 su -c "psql -d postgres -f /pgwatch2/bootstrap/grant_monitor_to_pgwatch2.sql" postgres
@@ -91,7 +91,7 @@ fi
 
 touch /pgwatch2/persistent-config/db-bootstrap-done-marker
 
-pg_ctlcluster 15 main stop -- --wait
+pg_ctlcluster 17 main stop -- --wait
 
 fi
 
