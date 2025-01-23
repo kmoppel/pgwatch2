@@ -49,7 +49,8 @@ RUN cp /pgwatch2/bootstrap/grafana_custom_config.ini /etc/grafana/grafana.ini \
     && apt autoremove -y
 
 
-ADD grafana_dashboards /pgwatch2/grafana_dashboards
+ADD grafana_dashboards/postgres_datasource.yml /etc/grafana/provisioning/datasources/pgwatch2_metricsdb_ds.yml
+ADD grafana_dashboards/postgres/v11/ /var/lib/grafana/dashboards/
 
 
 # Set up supervisord [https://docs.docker.com/engine/admin/using_supervisord/]
